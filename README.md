@@ -26,7 +26,7 @@
 | `R` `G` | 打开 RSS 和 GitHub |
 | `?` | 快捷键说明，里面可以关掉单键快捷键 |
 
-文章页有左侧目录（读到哪节高亮哪节）、顶部阅读进度条、代码块复制按钮、小节链接、上一篇下一篇、按标签推荐的相关文章和系列导航。超过一年没更新的文章，开头会提示内容可能过时。另外还有归档、分类、标签、关于、404 页面和 `/atom.xml` 订阅源。
+文章页有左侧目录（读到哪节高亮哪节）、顶部阅读进度条、代码块复制按钮（长代码可以切换横向滚动或自动换行）、小节链接、上一篇下一篇、按标签推荐的相关文章和系列导航。超过一年没更新的文章，开头会提示内容可能过时。另外还有归档、分类、标签、关于、404 页面和 `/atom.xml` 订阅源。
 
 整个站只有浅色主题，不接任何统计。评论用 giscus，没填配置时页面不加载任何外部脚本。
 
@@ -97,6 +97,8 @@ draft: true                           # 可选，草稿只在 npm run dev 时显
 
 正文是标准 Markdown，二级标题（`##`）会进入目录。图片放进 `public/` 目录，比如 `public/images/a.png`，文章里写 `![说明](/images/a.png)`。模板自带的三篇示例文章可以直接删掉。
 
+从新建文件到发布、修改的完整步骤，以及一篇年终总结的例子，见 [docs/writing.md](docs/writing.md)。
+
 ### 发布到 GitHub Pages
 
 1. 在 GitHub 新建一个仓库，名字写成 `你的用户名.github.io`。
@@ -139,6 +141,7 @@ src/layouts/             Base 是 HTML 外壳，Page 是子页面外壳
 src/scripts/             earth.ts 地球，runtime.ts 首页抽屉和时钟，search.ts 全站搜索
 src/styles/              base.css 基础排版，theme.css 主题
 public/                  原样复制到网站根目录的文件，地球贴图在 textures/
+docs/                    写文章的操作手册
 .github/workflows/       自动发布到 GitHub Pages 的配置
 ```
 
@@ -176,7 +179,7 @@ Press ⌘K (Ctrl K on Windows) on any page to search titles, tags, categories, d
 | `R` `G` | Open RSS and GitHub |
 | `?` | Shortcut help, with a switch to turn single-key shortcuts off |
 
-Post pages have a table of contents that highlights the current section, a reading progress bar, copy buttons on code blocks, section links, previous/next links, related posts by shared tags, and series navigation. Posts not updated for over a year show a note that they may be out of date. There are also archive, category, tag, about and 404 pages, plus an `/atom.xml` feed.
+Post pages have a table of contents that highlights the current section, a reading progress bar, copy buttons on code blocks (long code can scroll sideways or wrap to the page width), section links, previous/next links, related posts by shared tags, and series navigation. Posts not updated for over a year show a note that they may be out of date. There are also archive, category, tag, about and 404 pages, plus an `/atom.xml` feed.
 
 The site is light-theme only and has no analytics. Comments use giscus; until you fill in its settings, no external script is loaded.
 
@@ -247,6 +250,8 @@ draft: true                           # optional, drafts only show in npm run de
 
 The body is standard Markdown, and `##` headings go into the table of contents. Put images in `public/`, e.g. `public/images/a.png`, and reference them as `![alt](/images/a.png)`. Delete the three sample posts whenever you like.
 
+A step-by-step guide covering everything from creating the file to publishing and editing, with a full example, is in [docs/writing.md](docs/writing.md) (Chinese only).
+
 ### Deploy to GitHub Pages
 
 1. Create a GitHub repository named `your-name.github.io`.
@@ -289,6 +294,7 @@ src/layouts/             Base is the HTML shell, Page the sub-page shell
 src/scripts/             earth.ts globe, runtime.ts home drawers and clock, search.ts site search
 src/styles/              base.css typography, theme.css theme
 public/                  copied as-is to the site root; globe textures in textures/
+docs/                    guide to writing posts
 .github/workflows/       GitHub Pages deployment
 ```
 
