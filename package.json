@@ -1,0 +1,19 @@
+{
+  "name": "astro-earth-blog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/rss": "4.0.19",
+    "astro": "7.4.2",
+    "three": "0.186.1"
+  },
+  "engines": {
+    "node": ">=22.23.4"
+  }
+}
