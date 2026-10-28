@@ -10,7 +10,7 @@
 
 ### 功能一览
 
-首页背后是一颗 three.js 地球，按你打开页面的这一刻计算太阳直射点，白天一面是真彩贴图，夜里一面亮着城市灯光。你所在的城市标一个橙色光点，地球可以拖着转，松手几秒后慢慢转回来，双击立刻转回。不支持 WebGL 的设备显示一个虚线圆占位，手机和省流量模式自动换成小贴图。
+首页背后是一颗 three.js 地球，按你打开页面的这一刻计算太阳直射点，白天一面是真彩贴图，夜里一面亮着城市灯光。你所在的城市标一个橙色光点，地球可以拖着转，松手几秒后慢慢转回来，双击立刻转回。贴图还没下完的时候，屏幕上先是一张现画的手绘海图（纸底、点阵陆地、墨线海岸线），贴图到齐后再淡入换成照片，所以第一帧就有东西可看，也不会空等；开了省流量模式就只留手绘图，一张贴图都不下。不支持 WebGL 的设备显示一个虚线圆占位，手机自动换成小一号的贴图。
 
 首页的格子依次是：名字和身份、家乡时区的时钟和太阳直射点、最新一篇、技术栈、最近几篇、近 12 个月每月写了几篇、常写的标签。底部 Dock 打开文章、分类、关于三个抽屉，抽屉状态写在地址栏的 `#posts` 这类 hash 里，刷新和前进后退都能回到原来的位置。从文章返回首页时，抽屉的滚动位置保留，刚读过的那篇会标出来，上次访问之后新发的文章标 new。
 
@@ -138,10 +138,10 @@ src/content/posts/       文章
 src/pages/               页面，index.astro 是首页，[y]/[m]/[d]/[slug].astro 是文章页
 src/components/          文章列表、分类分组、关于、搜索框
 src/layouts/             Base 是 HTML 外壳，Page 是子页面外壳
-src/scripts/             earth.ts 地球，runtime.ts 首页抽屉和时钟，search.ts 全站搜索
+src/scripts/             earth.ts 地球，world.ts 手绘海图的海岸线，runtime.ts 首页抽屉和时钟，search.ts 全站搜索
 src/styles/              base.css 基础排版，theme.css 主题
-public/                  原样复制到网站根目录的文件，地球贴图在 textures/
-docs/                    写文章的操作手册
+public/                  原样复制到网站根目录的文件，照片贴图在 textures/
+docs/                    写文章的操作手册，素材来源和许可见 attribution.md
 .github/workflows/       自动发布到 GitHub Pages 的配置
 ```
 
@@ -155,7 +155,7 @@ docs/                    写文章的操作手册
 
 **Windows 上快捷键显示 Ctrl K**，这是按系统自动换的，按 Ctrl K 就能打开搜索。
 
-地球贴图来自 three.js 示例和 Solar System Scope，许可见 `public/textures/ATTRIBUTION.md`。
+地球贴图和手绘海图的海岸线来源、许可都在 `docs/attribution.md`。
 
 <a id="english"></a>
 
@@ -163,7 +163,7 @@ docs/                    写文章的操作手册
 
 ### Features
 
-The home page sits on a three.js Earth that computes the subsolar point for the moment you open the page: true-colour imagery on the day side, city lights on the night side. Your home city is marked with an orange dot. Drag the globe to spin it; it eases back home a few seconds after you let go, and a double-click sends it back at once. Devices without WebGL get a dashed-circle placeholder, and phones or Data Saver mode load smaller textures.
+The home page sits on a three.js Earth that computes the subsolar point for the moment you open the page: true-colour imagery on the day side, city lights on the night side. Your home city is marked with an orange dot. Drag the globe to spin it; it eases back home a few seconds after you let go, and a double-click sends it back at once. Before the textures arrive the globe is a hand-drawn sea chart (paper, stippled land, ink coastlines) drawn in the browser, and the photos cross-fade in once they land — so there is always something on screen. Data Saver mode keeps the drawing and downloads no textures at all. Devices without WebGL get a dashed-circle placeholder, and phones load the smaller texture set.
 
 The home tiles show your name and role, a clock in your home time zone with the current subsolar point, the latest post, your tech stack, recent posts, posts per month over the last 12 months, and your most-used tags. The dock at the bottom opens three drawers (posts, categories, about). Drawer state lives in the URL hash (`#posts` and so on), so reload and back/forward land in the same place. Coming back from a post restores the drawer's scroll position and marks the post you just read; posts published since your last visit are tagged new.
 
@@ -291,10 +291,10 @@ src/content/posts/       posts
 src/pages/               routes; index.astro is the home page, [y]/[m]/[d]/[slug].astro the post page
 src/components/          post list, category groups, about, search dialog
 src/layouts/             Base is the HTML shell, Page the sub-page shell
-src/scripts/             earth.ts globe, runtime.ts home drawers and clock, search.ts site search
+src/scripts/             earth.ts globe, world.ts coastlines for the hand-drawn chart, runtime.ts home drawers and clock, search.ts site search
 src/styles/              base.css typography, theme.css theme
-public/                  copied as-is to the site root; globe textures in textures/
-docs/                    guide to writing posts
+public/                  copied as-is to the site root; photo textures in textures/
+docs/                    guide to writing posts; attribution.md has sources and licences
 .github/workflows/       GitHub Pages deployment
 ```
 
@@ -304,4 +304,4 @@ docs/                    guide to writing posts
 
 **The globe doesn't show.** Check WebGL support at https://get.webgl.org; without it you get a dashed-circle placeholder.
 
-Globe textures come from the three.js examples and Solar System Scope; see `public/textures/ATTRIBUTION.md` for licences.
+Globe textures and the hand-drawn chart's coastlines are credited in `docs/attribution.md`.
